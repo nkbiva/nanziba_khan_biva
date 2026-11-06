@@ -254,6 +254,49 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
   --c-neuro:#12BFB3; --c-nlp:#E2AF2A; --c-sys:#AC7FD0; --c-health:#E8774A;
   background:var(--ink-bg); color:var(--fg); border-color:transparent!important; color-scheme:dark}
 .ink .muted{color:var(--muted)}
+
+/* Experience cards */
+.strip.ink{border-radius:24px}
+.xgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s200)}
+.xcard{border:1px solid var(--line);border-radius:24px;background:var(--surface);padding:var(--s400);display:grid;gap:var(--s100);align-content:start;
+  transition:transform .5s var(--ease),border-color .3s var(--ease)}
+.xcard:hover{transform:translateY(-3px);border-color:var(--t)}
+.xcard.now{background:color-mix(in srgb,var(--t) 8%,var(--surface));border-color:color-mix(in srgb,var(--t) 40%,var(--line))}
+.xtop{display:flex;justify-content:space-between;align-items:center;gap:var(--s200);margin-bottom:var(--s100)}
+.xtop .when{display:inline-flex;align-items:center;gap:var(--s75);padding:var(--s50) var(--s100);border-radius:9999px;border:1px solid var(--line);color:var(--muted);background:var(--bg)}
+.ibadge{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--t) 16%,transparent);color:var(--t)}
+.ibadge svg{width:24px;height:24px}
+.xk{color:var(--t)}
+.heading-6{font-size:1.25rem;line-height:1.75rem;font-weight:600;letter-spacing:-0.01em}
+.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s75);margin-block:var(--s100)}
+.metrics div{background:var(--sunk);border-radius:12px;padding:var(--s200);display:grid;gap:var(--s25)}
+.metrics b{font-family:var(--mono);font-weight:500;font-size:1.5rem;line-height:2rem;color:var(--t);letter-spacing:-0.02em}
+.bul{list-style:none;margin:var(--s50) 0 0;padding:0;display:grid;gap:var(--s75)}
+.bul li{display:flex;gap:var(--s75);align-items:baseline;color:var(--muted)}
+.bul li::before{content:"";width:6px;height:6px;border-radius:9999px;background:var(--t);flex:none;transform:translateY(-2px)}
+.gpa{display:grid;gap:var(--s75);margin-block:var(--s100);padding:var(--s200);border-radius:12px;background:var(--sunk)}
+.gpa-row{display:flex;justify-content:space-between;align-items:baseline}
+.gpa b{font-size:1.5rem;line-height:2rem;font-weight:500;color:var(--t)}
+.meter{height:8px;border-radius:9999px;background:color-mix(in srgb,var(--t) 15%,transparent);overflow:hidden}
+.meter span{display:block;height:100%;border-radius:9999px;background:var(--t);transform-origin:left;transition:transform 1s var(--ease)}
+.meter.pre-fill span{transform:scaleX(0)}
+.pulse{width:8px;height:8px;border-radius:9999px;background:var(--c-neuro);box-shadow:0 0 0 0 color-mix(in srgb,var(--c-neuro) 60%,transparent);animation:pulse 2s var(--ease) infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--c-neuro) 55%,transparent)}100%{box-shadow:0 0 0 8px transparent}}
+
+/* Toolkit bento */
+.toolkit{border-radius:32px;padding:var(--s600);display:grid;gap:var(--s300)}
+.legend{display:inline-flex;align-items:center;gap:var(--s75)}
+.pdot{width:8px;height:8px;border-radius:9999px;background:var(--fg)}
+.bento{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s200)}
+.tile{border:1px solid var(--line);border-radius:24px;padding:var(--s300);display:grid;gap:var(--s200);align-content:start;background:var(--surface);transition:transform .5s var(--ease),border-color .3s var(--ease)}
+.tile:hover{transform:translateY(-3px);border-color:var(--t)}
+.tile-head{display:flex;align-items:center;gap:var(--s100)}
+.pills{display:flex;flex-wrap:wrap;gap:var(--s75)}
+.pills span{display:inline-flex;align-items:center;gap:var(--s75);padding:var(--s50) var(--s100);border-radius:9999px;border:1px solid color-mix(in srgb,var(--t) 45%,transparent);color:var(--fg);background:color-mix(in srgb,var(--t) 10%,transparent);transition:background-color .3s var(--ease)}
+.pills span:hover{background:color-mix(in srgb,var(--t) 24%,transparent)}
+.pills span.used::before{content:"";width:6px;height:6px;border-radius:9999px;background:var(--fg)}
+@media (max-width:760px){ .xgrid,.bento,.metrics{grid-template-columns:minmax(0,1fr)} .xcard,.toolkit{padding:var(--s300)} }
+@media (prefers-reduced-motion:reduce){ .pulse{animation:none} .meter.pre-fill span{transform:none} }
 /* Thread colors */
 [data-thread="nlp"]{--t:var(--c-nlp)} [data-thread="neuro"]{--t:var(--c-neuro)} [data-thread="health"]{--t:var(--c-health)} [data-thread="sys"]{--t:var(--c-sys)}
 .focus article{border-top:2px solid var(--t)}
@@ -611,28 +654,51 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       <span class="eyebrow caption-3">Background</span>
       <h2 class="heading-3" id="exp-h">Experience and education</h2>
     </div>
-    <div class="strip" aria-label="Timeline of education, work and publications, 2018 to 2026">
+    <div class="strip ink" aria-label="Timeline of education, work and publications, 2018 to 2026">
       <div class="strip-inner" id="strip"></div>
     </div>
-    <div class="two">
-      <div>
-        <h3 class="col-title caption-3">Experience</h3>
-        <ol class="tl">
-          <li><span class="when caption-4 mono">Jan 2024 to Sep 2025</span><span class="title-2">University Research Assistant</span><span class="body-6 muted">Sylhet Engineering College, Bangladesh</span>
-            <ul class="body-6"><li>Contributed to two published ML and NLP studies</li><li>Built data collection pipelines covering 10,000+ Bengali sentence pairs</li><li>Prepared manuscript drafts and figures for peer reviewed submissions</li></ul></li>
-          <li><span class="when caption-4 mono">Aug 2024 to Jul 2025</span><span class="title-2">IT Executive</span><span class="body-6 muted">Ecomclips, Bangladesh</span>
-            <ul class="body-6"><li>Used data systems to track customer insight</li><li>Coordinated tasks across teams</li></ul></li>
-        </ol>
-      </div>
-      <div>
-        <h3 class="col-title caption-3">Education</h3>
-        <ol class="tl">
-          <li><span class="when caption-4 mono">Sep 2025 to present</span><span class="title-2">MSc in ICT, Data Analytics</span><span class="body-6 muted">University of Turku, Finland · GPA 3.60/5.00 (59 ECTS)</span>
-            <ul class="body-6"><li>Deep Learning in Human Language Technology, Statistical Data Analysis, ML Evaluation, Advanced Algorithms</li></ul></li>
-          <li><span class="when caption-4 mono">Jan 2018 to Dec 2024</span><span class="title-2">BSc in Computer Science and Engineering</span><span class="body-6 muted">Faridpur Engineering College, University of Dhaka · GPA 3.52/4.00</span>
-            <ul class="body-6"><li>Thesis: Personalized Food Recommendation System for Allergy</li></ul></li>
-        </ol>
-      </div>
+    <div class="xgrid">
+      <article class="xcard" data-thread="nlp">
+        <div class="xtop"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7 15h10"/></svg></span><span class="when caption-4 mono">Jan 2024 to Sep 2025</span></div>
+        <span class="caption-3 xk">Research</span>
+        <h3 class="heading-6">University Research Assistant</h3>
+        <p class="body-6 muted">Sylhet Engineering College, Bangladesh</p>
+        <div class="metrics">
+          <div><b>10,000+</b><span class="caption-5 muted">Bengali sentence pairs collected</span></div>
+          <div><b>2</b><span class="caption-5 muted">published ML and NLP studies</span></div>
+        </div>
+        <ul class="bul body-6"><li>Built the data collection pipelines</li><li>Drafted manuscripts and figures for peer review</li></ul>
+      </article>
+      <article class="xcard" data-thread="sys">
+        <div class="xtop"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></span><span class="when caption-4 mono">Aug 2024 to Jul 2025</span></div>
+        <span class="caption-3 xk">Industry</span>
+        <h3 class="heading-6">IT Executive</h3>
+        <p class="body-6 muted">Ecomclips, Bangladesh</p>
+        <ul class="bul body-6"><li>Used data systems to track customer insight</li><li>Coordinated tasks across teams</li></ul>
+      </article>
+      <article class="xcard now" data-thread="neuro">
+        <div class="xtop"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></svg></span><span class="when caption-4 mono"><span class="pulse" aria-hidden="true"></span>Sep 2025 to present</span></div>
+        <span class="caption-3 xk">Master's</span>
+        <h3 class="heading-6">MSc in ICT, Data Analytics</h3>
+        <p class="body-6 muted">University of Turku, Finland</p>
+        <div class="gpa" role="img" aria-label="GPA 3.60 out of 5.00">
+          <div class="gpa-row"><span class="caption-4 muted">GPA</span><span class="mono body-5"><b>3.60</b> / 5.00</span></div>
+          <div class="meter"><span style="width:72%"></span></div>
+          <span class="caption-5 muted">59 ECTS completed</span>
+        </div>
+        <p class="body-6 muted">Thesis: radiomics on the Calgary Preschool MRI Dataset</p>
+      </article>
+      <article class="xcard" data-thread="health">
+        <div class="xtop"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5M22 9v6"/></svg></span><span class="when caption-4 mono">Jan 2018 to Dec 2024</span></div>
+        <span class="caption-3 xk">Bachelor's</span>
+        <h3 class="heading-6">BSc in Computer Science and Engineering</h3>
+        <p class="body-6 muted">Faridpur Engineering College, University of Dhaka</p>
+        <div class="gpa" role="img" aria-label="GPA 3.52 out of 4.00">
+          <div class="gpa-row"><span class="caption-4 muted">GPA</span><span class="mono body-5"><b>3.52</b> / 4.00</span></div>
+          <div class="meter"><span style="width:88%"></span></div>
+        </div>
+        <p class="body-6 muted">Thesis: Personalized Food Recommendation System for Allergy</p>
+      </article>
     </div>
   </section>
 
@@ -642,11 +708,26 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       <span class="eyebrow caption-3">Toolkit</span>
       <h2 class="heading-3" id="skills-h">What I work with</h2>
     </div>
-    <div class="skills">
-      <div><span class="title-4">ML frameworks</span><span class="body-6 muted">PyTorch, TensorFlow, scikit learn, TabPFN</span></div>
-      <div><span class="title-4">NLP</span><span class="body-6 muted">Transformer fine tuning, sequence modeling, text generation</span></div>
-      <div><span class="title-4">Neuroimaging</span><span class="body-6 muted">SynthSeg, PyRadiomics, ComBat, DIPY, nibabel</span></div>
-      <div><span class="title-4">Data and languages</span><span class="body-6 muted">Statistical analysis, ML evaluation, Python, C, SQL, Slurm on HPC</span></div>
+    <div class="toolkit ink">
+      <p class="legend caption-4 muted"><span class="pdot" aria-hidden="true"></span>Used in my Calgary thesis pipeline</p>
+      <div class="bento">
+        <div class="tile" data-thread="sys">
+          <div class="tile-head"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span><span class="title-3">ML and modelling</span></div>
+          <div class="pills caption-4"><span>PyTorch</span><span>TensorFlow</span><span class="used">TabPFN</span><span class="used">Elastic Net</span><span class="used">Random Forest</span><span class="used">Nested cross validation</span></div>
+        </div>
+        <div class="tile" data-thread="nlp">
+          <div class="tile-head"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg></span><span class="title-3">Language technology</span></div>
+          <div class="pills caption-4"><span>Transformer fine tuning</span><span>Sequence modeling</span><span>Text generation</span><span>Dataset curation</span></div>
+        </div>
+        <div class="tile" data-thread="neuro">
+          <div class="tile-head"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M7 8c2 1 3 3 2 5M17 8c-2 1-3 3-2 5"/></svg></span><span class="title-3">Neuroimaging</span></div>
+          <div class="pills caption-4"><span class="used">SynthSeg</span><span class="used">PyRadiomics</span><span class="used">ComBat</span><span class="used">DIPY</span><span class="used">nibabel</span></div>
+        </div>
+        <div class="tile" data-thread="health">
+          <div class="tile-head"><span class="ibadge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v13c0 1.7 3.6 3 8 3s8-1.3 8-3v-13M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span><span class="title-3">Data and languages</span></div>
+          <div class="pills caption-4"><span class="used">Python</span><span>SQL</span><span>C</span><span>C++</span><span>Java</span><span class="used">Statistical analysis</span><span class="used">ML evaluation</span><span class="used">Slurm on HPC</span></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -812,6 +893,12 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       });
     }, {threshold:0.6});
     document.querySelectorAll('[data-count]').forEach(function(el){ if(el.getBoundingClientRect().top > window.innerHeight) cio.observe(el); });
+  }
+
+  /* GPA meters fill when they scroll into view */
+  if('IntersectionObserver' in window && !reduce){
+    var mio = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.remove('pre-fill'); mio.unobserve(en.target); } }); }, {threshold:0.8});
+    document.querySelectorAll('.meter').forEach(function(m){ if(m.getBoundingClientRect().top > window.innerHeight){ m.classList.add('pre-fill'); mio.observe(m); } });
   }
 
   /* ---------- Charts ---------- */
