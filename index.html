@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B7A83'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='14' font-weight='600' fill='white' text-anchor='middle'%3ENB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+Bengali:wght@500&display=swap">
 <style>
 body{margin:0}
 /* Layout: classic hero plus sections (Layout A). Floating pill nav, 1080px column, one featured research block. */
@@ -193,6 +193,53 @@ section{padding-block:var(--s900)}
 .links a:hover{background:color-mix(in srgb,var(--bg) 12%,var(--fg))}
 footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s200);color:var(--muted)}
 
+/* Focus illustrations */
+.art{height:128px;border:1px solid var(--line);border-radius:16px;background:var(--surface);display:grid;place-items:center;overflow:hidden;margin-bottom:var(--s75)}
+.art svg{width:100%;height:100%;display:block}
+.art text{font-family:var(--mono)}
+.art .bn{font-family:"Noto Sans Bengali",var(--font);font-weight:500}
+
+/* Charts */
+.results{margin-top:var(--s600);display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:var(--s200)}
+.results .stack{display:grid;gap:var(--s200);align-content:start}
+.chart{border:1px solid var(--line);border-radius:16px;padding:var(--s300);display:grid;gap:var(--s200);align-content:start;min-width:0;background:var(--bg)}
+.chart header{display:grid;gap:var(--s50)}
+.chart .plot{overflow-x:auto}
+.chart svg{display:block;width:100%;height:auto}
+.chart svg text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.chart svg .lbl{font-family:var(--font);font-size:12px;fill:var(--fg)}
+.chart svg .grid{stroke:var(--line);stroke-width:1}
+.chart svg .zero{stroke:var(--fg);stroke-width:1;stroke-dasharray:3 3;opacity:.6}
+.chart svg .ci{stroke:var(--accent);stroke-width:2;stroke-linecap:round}
+.chart svg .pt{fill:var(--accent);stroke:var(--bg);stroke-width:2}
+.chart svg .bar{fill:var(--accent)}
+.chart svg .bar.dim{fill:var(--muted);opacity:.55}
+.chart svg .whisk{stroke:var(--fg);stroke-width:1.5}
+.chart svg .hit{fill:transparent;cursor:default}
+.chart svg .row:hover .pt,.chart svg .row:focus .pt{stroke:var(--fg)}
+.chart svg .row:hover .bar,.chart svg .row:focus .bar{opacity:1;filter:brightness(1.08)}
+.chart svg .row:focus{outline:none}
+.chart details summary{cursor:pointer;color:var(--muted)}
+.chart table{width:100%;border-collapse:collapse;margin-top:var(--s75);font-variant-numeric:tabular-nums}
+.chart th,.chart td{text-align:left;padding:var(--s50) var(--s75);border-bottom:1px solid var(--line)}
+.chart td.n{font-family:var(--mono);text-align:right}
+.tip{position:fixed;z-index:70;pointer-events:none;background:var(--fg);color:var(--bg);padding:var(--s75) var(--s100);border-radius:8px;max-width:240px;opacity:0;transform:translateY(4px);transition:opacity .2s var(--ease),transform .3s var(--ease)}
+.tip.show{opacity:1;transform:none}
+.tip b{display:block;font-weight:600}
+
+/* Timeline strip */
+.strip{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:var(--s300);margin-bottom:var(--s600);overflow-x:auto}
+.strip-inner{min-width:560px;display:grid;gap:var(--s75);position:relative}
+.lane{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s200);align-items:center}
+.track{position:relative;height:28px;border-radius:6px;background:var(--sunk)}
+.seg{position:absolute;top:0;bottom:0;border-radius:6px;background:var(--accent);display:flex;align-items:center;padding:0 var(--s75);color:var(--accent-fg);white-space:nowrap;overflow:hidden}
+.seg.alt{background:var(--fg);color:var(--bg)}
+.seg.live{border-radius:6px 0 0 6px}
+.years{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s200)}
+.ticks{position:relative;height:16px}
+.ticks span{position:absolute;transform:translateX(-50%);color:var(--muted)}
+.pubdot{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:9999px;background:var(--accent);border:2px solid var(--surface)}
+
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + var(--s300));transform:translate(-50%,16px);opacity:0;pointer-events:none;
   background:var(--fg);color:var(--bg);padding:var(--s75) var(--s200);border-radius:8px;transition:opacity .3s var(--ease),transform .5s var(--ease);z-index:60}
 .toast.show{opacity:1;transform:translate(-50%,0)}
@@ -206,7 +253,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
   .figure{max-width:420px}
   .feature-top,.two{grid-template-columns:minmax(0,1fr)}
   .pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .projects,.findings,.focus{grid-template-columns:minmax(0,1fr)}
+  .projects,.findings,.focus,.results{grid-template-columns:minmax(0,1fr)}
   .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
@@ -289,16 +336,47 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     </div>
     <div class="focus">
       <article>
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 320 128">
+          <text x="24" y="28" font-size="10" style="fill:var(--muted)">SOURCE / PARAPHRASE</text>
+          <text x="24" y="66" class="bn" font-size="26" style="fill:var(--fg)">সে দ্রুত দৌড়ায়</text>
+          <text x="24" y="104" class="bn" font-size="26" style="fill:var(--accent)">সে খুব তাড়াতাড়ি দৌড়ায়</text>
+        </svg></div>
         <span class="tag caption-4 mono">NLP</span>
         <h3 class="title-2">Bengali language technology</h3>
         <p class="body-6 muted">Paraphrase generation and text classification for a language with far fewer resources than English. I built the 10,000+ pair paraphrase corpus behind our 2024 paper.</p>
       </article>
       <article>
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 320 128">
+          <g fill="none" style="stroke:var(--fg)" stroke-width="1">
+            <ellipse cx="160" cy="64" rx="44" ry="54" opacity=".55"/>
+            <ellipse cx="160" cy="64" rx="38" ry="47" opacity=".2"/>
+            <ellipse cx="160" cy="64" rx="31" ry="39" opacity=".15"/>
+            <line x1="160" y1="12" x2="160" y2="116" opacity=".25"/>
+          </g>
+          <ellipse cx="152" cy="62" rx="4" ry="12" style="fill:var(--muted)" opacity=".5"/>
+          <ellipse cx="168" cy="62" rx="4" ry="12" style="fill:var(--muted)" opacity=".5"/>
+          <ellipse cx="148" cy="76" rx="7" ry="5" style="fill:var(--accent)"/>
+          <ellipse cx="172" cy="76" rx="7" ry="5" style="fill:var(--accent)"/>
+          <g font-size="10" style="fill:var(--muted)">
+            <line x1="179" y1="76" x2="228" y2="92" style="stroke:var(--muted)" stroke-width="1"/><text x="232" y="95">Thalamus</text>
+            <line x1="152" y1="50" x2="100" y2="34" style="stroke:var(--muted)" stroke-width="1"/><text x="40" y="37">Ventricle</text>
+          </g>
+        </svg></div>
         <span class="tag caption-4 mono">Neuroimaging</span>
         <h3 class="title-2">Radiomics from pediatric MRI</h3>
         <p class="body-6 muted">My MSc thesis uses the Calgary Preschool MRI Dataset to test whether brain structure predicts early language and processing speed scores beyond age.</p>
       </article>
       <article>
+        <div class="art" aria-hidden="true"><svg viewBox="0 0 320 128">
+          <line x1="40" y1="104" x2="290" y2="104" style="stroke:var(--line)" stroke-width="1"/>
+          <line x1="40" y1="24" x2="40" y2="104" style="stroke:var(--line)" stroke-width="1"/>
+          <path d="M40 100 C 120 99, 140 96, 165 64 S 220 28, 290 27" fill="none" style="stroke:var(--accent)" stroke-width="2"/>
+          <line x1="190" y1="20" x2="190" y2="104" style="stroke:var(--fg)" stroke-width="1" stroke-dasharray="3 3" opacity=".6"/>
+          <g style="fill:var(--fg)" opacity=".45"><circle cx="70" cy="96" r="3"/><circle cx="96" cy="99" r="3"/><circle cx="122" cy="92" r="3"/><circle cx="150" cy="80" r="3"/></g>
+          <g style="fill:var(--accent)"><circle cx="205" cy="40" r="3"/><circle cx="232" cy="33" r="3"/><circle cx="260" cy="30" r="3"/></g>
+          <text x="196" y="18" font-size="10" style="fill:var(--muted)">threshold</text>
+          <text x="44" y="120" font-size="10" style="fill:var(--muted)">predicted risk</text>
+        </svg></div>
         <span class="tag caption-4 mono">Health ML</span>
         <h3 class="title-2">Screening and risk prediction</h3>
         <p class="body-6 muted">Classification models for eclampsia risk in rural Bangladeshi women and early autism screening in children, plus an allergy aware food recommender.</p>
@@ -353,6 +431,37 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
           <p class="body-6">TabPFN matched or beat the classical models in every comparison, but its edge did not survive correction for multiple testing.</p>
         </div>
       </div>
+      <div class="results">
+        <div class="chart" id="forest-card">
+          <header>
+            <span class="caption-3 muted">Result</span>
+            <h4 class="title-3">Does brain data add predictive value beyond age?</h4>
+            <p class="caption-5 muted">Change in R² over the age based baseline, with 95% bootstrap intervals. Only an interval fully right of the dashed line would show a clear gain.</p>
+          </header>
+          <div class="plot" id="forest"></div>
+          <details><summary class="caption-4">Show as table</summary><table class="caption-5" id="forest-table"></table></details>
+        </div>
+        <div class="stack">
+          <div class="chart">
+            <header>
+              <span class="caption-3 muted">Variance</span>
+              <h4 class="title-3">What drives radiomic feature variance</h4>
+              <p class="caption-5 muted">Mean η² across all features</p>
+            </header>
+            <div class="plot" id="variance"></div>
+            <details><summary class="caption-4">Show as table</summary><table class="caption-5" id="variance-table"></table></details>
+          </div>
+          <div class="chart">
+            <header>
+              <span class="caption-3 muted">Harmonisation</span>
+              <h4 class="title-3">Features with a significant scanner effect</h4>
+              <p class="caption-5 muted">Before and after ComBat, with 95% Wilson intervals</p>
+            </header>
+            <div class="plot" id="combat"></div>
+            <details><summary class="caption-4">Show as table</summary><table class="caption-5" id="combat-table"></table></details>
+          </div>
+        </div>
+      </div>
     </article>
   </section>
 
@@ -395,6 +504,9 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     <div class="section-head">
       <span class="eyebrow caption-3">Background</span>
       <h2 class="heading-3" id="exp-h">Experience and education</h2>
+    </div>
+    <div class="strip" aria-label="Timeline of education, work and publications, 2018 to 2026">
+      <div class="strip-inner" id="strip"></div>
     </div>
     <div class="two">
       <div>
@@ -475,6 +587,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
 </footer>
 
 <div class="toast body-5" id="toast" role="status" aria-live="polite"></div>
+<div class="tip caption-5" id="tip" role="tooltip"></div>
 
 <script>
 (function(){
@@ -559,6 +672,126 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
     update();
   }
+
+  /* ---------- Charts ---------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, parent){ var e = document.createElementNS(NS, tag); for(var k in attrs) e.setAttribute(k, attrs[k]); if(parent) parent.appendChild(e); return e; }
+  var tip = document.getElementById('tip');
+  function bindTip(g, html){
+    g.setAttribute('tabindex','0');
+    function show(x,y){ tip.innerHTML = html; tip.classList.add('show');
+      var w = tip.offsetWidth, hgt = tip.offsetHeight;
+      tip.style.left = Math.min(window.innerWidth - w - 12, Math.max(12, x + 14)) + 'px';
+      tip.style.top = Math.max(12, y - hgt - 12) + 'px'; }
+    g.addEventListener('mousemove', function(e){ show(e.clientX, e.clientY); });
+    g.addEventListener('mouseleave', function(){ tip.classList.remove('show'); });
+    g.addEventListener('focus', function(){ var r = g.getBoundingClientRect(); show(r.left + r.width/2, r.top); });
+    g.addEventListener('blur', function(){ tip.classList.remove('show'); });
+  }
+  function fmt(v, d){ var s = (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(d == null ? 3 : d); return v === 0 ? '0.000' : s; }
+  function table(id, head, rows){
+    var t = document.getElementById(id);
+    t.innerHTML = '<thead><tr>' + head.map(function(h,i){ return '<th' + (i ? ' class="n"' : '') + '>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      rows.map(function(r){ return '<tr>' + r.map(function(c,i){ return '<td' + (i ? ' class="n"' : '') + '>' + c + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody>';
+  }
+
+  // Forest plot: incremental value beyond age (delta R2, 95% CI)
+  var forest = [
+    {src:'T1 radiomics', t:'NEPSY phonological', d:0.004, lo:-0.013, hi:0.023},
+    {src:'T1 radiomics', t:'Speeded naming', d:-0.002, lo:-0.007, hi:0.004},
+    {src:'Brain change over visits', t:'NEPSY phonological', d:-0.010, lo:-0.033, hi:0.017},
+    {src:'Brain change over visits', t:'Speeded naming', d:-0.022, lo:-0.039, hi:-0.007},
+    {src:'Diffusion (DTI)', t:'NEPSY phonological', d:0.011, lo:-0.013, hi:0.039},
+    {src:'Diffusion (DTI)', t:'Speeded naming', d:-0.009, lo:-0.022, hi:0.001},
+    {src:'Radiomics via TabPFN', t:'NEPSY phonological', d:0.014, lo:-0.0014, hi:0.033},
+    {src:'Radiomics via TabPFN', t:'Speeded naming', d:0.000, lo:-0.003, hi:0.002}
+  ];
+  (function(){
+    var W = 560, rowH = 30, top = 8, left = 196, right = 20, H = top + forest.length*rowH + 34;
+    var svg = el('svg', {viewBox:'0 0 '+W+' '+H, role:'img', 'aria-label':'Forest plot: every interval except one spans zero; brain change over visits for speeded naming is entirely negative'}, document.getElementById('forest'));
+    var min = -0.04, max = 0.04, x = function(v){ return left + (v - min)/(max - min)*(W - left - right); };
+    [-0.04,-0.02,0,0.02,0.04].forEach(function(v){
+      el('line', {x1:x(v), x2:x(v), y1:top, y2:top + forest.length*rowH, 'class': v === 0 ? 'zero' : 'grid'}, svg);
+      var tx = el('text', {x:x(v), y:H - 12, 'text-anchor':'middle'}, svg); tx.textContent = v === 0 ? '0' : fmt(v, 2);
+    });
+    forest.forEach(function(r, i){
+      var cy = top + i*rowH + rowH/2;
+      if(i % 2 === 0){ var a = el('text', {x:0, y:cy + 4, 'class':'lbl'}, svg); a.textContent = r.src; }
+      var lab = el('text', {x:left - 12, y:cy + 4, 'text-anchor':'end'}, svg); lab.textContent = r.t === 'NEPSY phonological' ? 'NEPSY' : 'Naming';
+      var g = el('g', {'class':'row'}, svg);
+      el('rect', {x:left, y:cy - rowH/2, width:W - left - right, height:rowH, 'class':'hit'}, g);
+      el('line', {x1:x(r.lo), x2:x(r.hi), y1:cy, y2:cy, 'class':'ci'}, g);
+      el('circle', {cx:x(r.d), cy:cy, r:5, 'class':'pt'}, g);
+      bindTip(g, '<b>' + r.src + ' · ' + r.t + '</b>ΔR² ' + fmt(r.d) + '<br>95% CI ' + fmt(r.lo) + ' to ' + fmt(r.hi));
+    });
+    table('forest-table', ['Data source · outcome','ΔR²','95% CI'], forest.map(function(r){ return [r.src + ' · ' + r.t, fmt(r.d), fmt(r.lo) + ' to ' + fmt(r.hi)]; }));
+  })();
+
+  // Variance contributors (mean eta squared)
+  var variance = [{k:'Scanner software', v:0.035}, {k:'Age', v:0.028}, {k:'Sex', v:0.008}];
+  (function(){
+    var W = 360, rowH = 34, left = 118, right = 48, H = variance.length*rowH + 4, max = 0.04;
+    var svg = el('svg', {viewBox:'0 0 '+W+' '+H, role:'img', 'aria-label':'Scanner software version contributes the most variance, then age, then sex'}, document.getElementById('variance'));
+    variance.forEach(function(r, i){
+      var y = i*rowH + 6, bw = r.v/max*(W - left - right);
+      var t = el('text', {x:0, y:y + 15, 'class':'lbl'}, svg); t.textContent = r.k;
+      var g = el('g', {'class':'row'}, svg);
+      el('rect', {x:left, y:y - 4, width:W - left, height:rowH - 6, 'class':'hit'}, g);
+      el('rect', {x:left, y:y + 2, width:bw, height:18, rx:4, 'class': i === 0 ? 'bar' : 'bar dim'}, g);
+      var v = el('text', {x:left + bw + 8, y:y + 15}, svg); v.textContent = r.v.toFixed(3);
+      bindTip(g, '<b>' + r.k + '</b>Mean η² ' + r.v.toFixed(3));
+    });
+    table('variance-table', ['Factor','Mean η²'], variance.map(function(r){ return [r.k, r.v.toFixed(3)]; }));
+  })();
+
+  // ComBat before / after (% features with significant batch effect)
+  var combat = [{k:'Before ComBat', v:73.7, lo:73.0, hi:74.5}, {k:'After ComBat', v:50.1, lo:49.3, hi:51.0}];
+  (function(){
+    var W = 360, rowH = 38, left = 118, right = 56, H = combat.length*rowH + 26;
+    var svg = el('svg', {viewBox:'0 0 '+W+' '+H, role:'img', 'aria-label':'Share of features with a significant scanner effect fell from 73.7 percent to 50.1 percent after ComBat'}, document.getElementById('combat'));
+    var x = function(v){ return left + v/100*(W - left - right); };
+    [0,50,100].forEach(function(v){
+      el('line', {x1:x(v), x2:x(v), y1:0, y2:combat.length*rowH, 'class':'grid'}, svg);
+      var t = el('text', {x:x(v), y:H - 8, 'text-anchor':'middle'}, svg); t.textContent = v + '%';
+    });
+    combat.forEach(function(r, i){
+      var y = i*rowH + 8;
+      var t = el('text', {x:0, y:y + 15, 'class':'lbl'}, svg); t.textContent = r.k;
+      var g = el('g', {'class':'row'}, svg);
+      el('rect', {x:left, y:y - 6, width:W - left, height:rowH - 4, 'class':'hit'}, g);
+      el('rect', {x:left, y:y + 2, width:x(r.v) - left, height:18, rx:4, 'class': i === 1 ? 'bar' : 'bar dim'}, g);
+      el('line', {x1:x(r.lo), x2:x(r.hi), y1:y + 11, y2:y + 11, 'class':'whisk'}, g);
+      var v = el('text', {x:x(r.v) + 8, y:y + 15}, svg); v.textContent = r.v.toFixed(1) + '%';
+      bindTip(g, '<b>' + r.k + '</b>' + r.v.toFixed(1) + '% of features<br>95% CI ' + r.lo.toFixed(1) + '% to ' + r.hi.toFixed(1) + '%');
+    });
+    table('combat-table', ['Stage','Share','95% CI'], combat.map(function(r){ return [r.k, r.v.toFixed(1) + '%', r.lo.toFixed(1) + '% to ' + r.hi.toFixed(1) + '%']; }));
+  })();
+
+  // Timeline strip 2018 to end of 2026
+  (function(){
+    var start = 2018, end = 2027, span = end - start;
+    function pos(y, m){ return ((y + (m - 1)/12) - start)/span*100; }
+    var lanes = [
+      {k:'Education', segs:[{a:[2018,1], b:[2024,12], t:'BSc Computer Science and Engineering', c:'alt'}, {a:[2025,9], b:[2026,11], t:'MSc Data Analytics', c:'live'}]},
+      {k:'Research', segs:[{a:[2024,1], b:[2025,9], t:'Research Assistant'}]},
+      {k:'Industry', segs:[{a:[2024,8], b:[2025,7], t:'IT Executive', c:'alt'}]},
+      {k:'Publications', dots:[[2024,5],[2024,8],[2026,6]]}
+    ];
+    var root = document.getElementById('strip'), h = '';
+    lanes.forEach(function(l){
+      h += '<div class="lane"><span class="title-4">' + l.k + '</span><div class="track">';
+      (l.segs || []).forEach(function(s){
+        var L = pos(s.a[0], s.a[1]), R = pos(s.b[0], s.b[1] + 1);
+        h += '<span class="seg caption-4 ' + (s.c || '') + '" style="left:' + L + '%;width:' + (R - L) + '%" title="' + s.t + '">' + s.t + '</span>';
+      });
+      (l.dots || []).forEach(function(d){ h += '<span class="pubdot" style="left:' + pos(d[0], d[1]) + '%"></span>'; });
+      h += '</div></div>';
+    });
+    h += '<div class="years"><span></span><div class="ticks caption-5 mono">';
+    for(var y = start; y <= 2026; y++) h += '<span style="left:' + pos(y, 7) + '%">' + y + '</span>';
+    h += '</div></div>';
+    root.innerHTML = h;
+  })();
 
   /* Hero illustration: stylised axial slice with highlighted regions */
   var cv = document.getElementById('slice'), ctx = cv.getContext('2d');
