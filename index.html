@@ -8,7 +8,7 @@
 <meta name="description" content="Nanziba Khan Biva, MSc student in Data Analytics at the University of Turku. Machine learning for Bengali NLP and preschool brain MRI radiomics.">
 <meta property="og:title" content="Nanziba Khan Biva">
 <meta property="og:description" content="Machine learning for language and the developing brain.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B7A83'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='14' font-weight='600' fill='white' text-anchor='middle'%3ENB%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307857B'/%3E%3Ctext x='16' y='21' font-family='sans-serif' font-size='14' font-weight='600' fill='white' text-anchor='middle'%3ENB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Noto+Sans+Bengali:wght@500&display=swap">
@@ -16,13 +16,13 @@
 body{margin:0}
 /* Layout: classic hero plus sections (Layout A). Floating pill nav, 1080px column, one featured research block. */
 :root{
-  --bg:#F7F9F9; --surface:#FFFFFF; --sunk:#EEF2F2; --fg:#0B1214; --muted:#566264; --line:#DCE3E4;
-  --accent:#0B7A83; --accent-fg:#FFFFFF; --accent-soft:#E2F1F2;
+  --bg:#F7F8F5; --surface:#FFFFFF; --sunk:#EEF1EC; --fg:#141A17; --muted:#5C6660; --line:#DDE2DB;
+  --accent:#07857B; --accent-fg:#FFFFFF; --accent-soft:#DFF3EF;
   --hero-from:#000000; --hero-to:#666666;
   --nav-bg:rgba(255,255,255,.72);
-  --c-neuro:#008C99; --c-nlp:#C2650A; --c-sys:#4F5BD5; --c-health:#D23A6E;
-  --band:#0B4F55; --band-fg:#FFFFFF; --band-muted:#B9D6D8; --turku:#EEF0FB;
-  --ink-bg:#0E2A2E;
+  --c-neuro:#079A8F; --c-nlp:#B07F0A; --c-sys:#8B4F9E; --c-health:#C0532A;
+  --band:#0B4F55; --band-fg:#FFFFFF; --band-muted:#B9D6D8; --turku:#FAF4E3;
+  --ink-bg:#192321;
   --font:"Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --ease:cubic-bezier(0.22,1,0.36,1);
@@ -30,13 +30,13 @@ body{margin:0}
   --s25:2px; --s50:4px; --s75:8px; --s100:12px; --s200:16px; --s300:24px; --s400:32px; --s500:40px; --s600:48px; --s700:64px; --s800:80px; --s900:96px;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#181818; --surface:#1F1F1F; --sunk:#272727; --fg:#F1F4F4; --muted:#9BA5A6; --line:#313131;
-  --accent:#4CC3C9; --accent-fg:#0B1214; --accent-soft:#1E3436;
-  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); --c-neuro:#1FA3AA; --c-nlp:#C97814; --c-sys:#7B84E8; --c-health:#DE5583; --band:#12393C; --band-fg:#FFFFFF; --band-muted:#9FC3C6; --turku:#1F1F1F; --ink-bg:#000000; color-scheme:dark; } }
+  --bg:#181818; --surface:#1F1F1F; --sunk:#272727; --fg:#F2F4F1; --muted:#A0A89F; --line:#313131;
+  --accent:#12BFB3; --accent-fg:#0B1513; --accent-soft:#183531;
+  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); --c-neuro:#12BFB3; --c-nlp:#E2AF2A; --c-sys:#AC7FD0; --c-health:#E8774A; --band:#12393C; --band-fg:#FFFFFF; --band-muted:#9FC3C6; --turku:#1F1F1F; --ink-bg:#131209; color-scheme:dark; } }
 :root[data-theme="dark"]{
-  --bg:#181818; --surface:#1F1F1F; --sunk:#272727; --fg:#F1F4F4; --muted:#9BA5A6; --line:#313131;
-  --accent:#4CC3C9; --accent-fg:#0B1214; --accent-soft:#1E3436;
-  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); --c-neuro:#1FA3AA; --c-nlp:#C97814; --c-sys:#7B84E8; --c-health:#DE5583; --band:#12393C; --band-fg:#FFFFFF; --band-muted:#9FC3C6; --turku:#1F1F1F; --ink-bg:#000000; color-scheme:dark; }
+  --bg:#181818; --surface:#1F1F1F; --sunk:#272727; --fg:#F2F4F1; --muted:#A0A89F; --line:#313131;
+  --accent:#12BFB3; --accent-fg:#0B1513; --accent-soft:#183531;
+  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); --c-neuro:#12BFB3; --c-nlp:#E2AF2A; --c-sys:#AC7FD0; --c-health:#E8774A; --band:#12393C; --band-fg:#FFFFFF; --band-muted:#9FC3C6; --turku:#1F1F1F; --ink-bg:#131209; color-scheme:dark; }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:var(--s900)}
@@ -239,7 +239,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
 .seg{position:absolute;top:0;bottom:0;border-radius:6px;background:var(--accent);display:flex;align-items:center;padding:0 var(--s75);color:var(--accent-fg);white-space:nowrap;overflow:hidden}
 .seg.alt{background:var(--fg);color:var(--bg)}
 .seg.live{border-radius:6px 0 0 6px;background:var(--c-neuro);color:#fff}
-.seg.nlp{background:var(--c-nlp);color:#fff}
+.seg.nlp{background:var(--c-nlp);color:#141A17}
 .seg.sys{background:var(--c-sys);color:#fff}
 .years{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s200)}
 .ticks{position:relative;height:16px}
@@ -249,9 +249,9 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
 
 /* Ink scope: deep color field that re-themes everything inside it */
 .ink{--bg:var(--ink-bg); --surface:color-mix(in srgb,#FFFFFF 5%,var(--ink-bg)); --sunk:color-mix(in srgb,#FFFFFF 8%,var(--ink-bg));
-  --fg:#F3F7F7; --muted:#9DB4B6; --line:color-mix(in srgb,#FFFFFF 14%,var(--ink-bg));
-  --accent:#14B3BB; --accent-fg:#06191B; --accent-soft:color-mix(in srgb,#14B3BB 18%,var(--ink-bg));
-  --c-neuro:#14B3BB; --c-nlp:#E39424; --c-sys:#7F89F5; --c-health:#F05A8B;
+  --fg:#F4F6F2; --muted:#A9B5AC; --line:color-mix(in srgb,#FFFFFF 14%,var(--ink-bg));
+  --accent:#12BFB3; --accent-fg:#0B1513; --accent-soft:color-mix(in srgb,#12BFB3 18%,var(--ink-bg));
+  --c-neuro:#12BFB3; --c-nlp:#E2AF2A; --c-sys:#AC7FD0; --c-health:#E8774A;
   background:var(--ink-bg); color:var(--fg); border-color:transparent!important; color-scheme:dark}
 .ink .muted{color:var(--muted)}
 /* Thread colors */
