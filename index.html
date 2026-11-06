@@ -20,6 +20,9 @@ body{margin:0}
   --accent:#0B7A83; --accent-fg:#FFFFFF; --accent-soft:#E2F1F2;
   --hero-from:#000000; --hero-to:#666666;
   --nav-bg:rgba(255,255,255,.72);
+  --c-neuro:#008C99; --c-nlp:#C2650A; --c-sys:#4F5BD5; --c-health:#D23A6E;
+  --band:#0B4F55; --band-fg:#FFFFFF; --band-muted:#B9D6D8; --turku:#EEF0FB;
+  --ink-bg:#0E2A2E;
   --font:"Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --ease:cubic-bezier(0.22,1,0.36,1);
@@ -29,11 +32,11 @@ body{margin:0}
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --bg:#181818; --surface:#1F1F1F; --sunk:#272727; --fg:#F1F4F4; --muted:#9BA5A6; --line:#313131;
   --accent:#4CC3C9; --accent-fg:#0B1214; --accent-soft:#1E3436;
-  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); color-scheme:dark; } }
+  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); --c-neuro:#1FA3AA; --c-nlp:#C97814; --c-sys:#7B84E8; --c-health:#DE5583; --band:#12393C; --band-fg:#FFFFFF; --band-muted:#9FC3C6; --turku:#1F1F1F; --ink-bg:#000000; color-scheme:dark; } }
 :root[data-theme="dark"]{
   --bg:#181818; --surface:#1F1F1F; --sunk:#272727; --fg:#F1F4F4; --muted:#9BA5A6; --line:#313131;
   --accent:#4CC3C9; --accent-fg:#0B1214; --accent-soft:#1E3436;
-  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); color-scheme:dark; }
+  --hero-from:#FFFFFF; --hero-to:#9B9B9B; --nav-bg:rgba(31,31,31,.72); --c-neuro:#1FA3AA; --c-nlp:#C97814; --c-sys:#7B84E8; --c-health:#DE5583; --band:#12393C; --band-fg:#FFFFFF; --band-muted:#9FC3C6; --turku:#1F1F1F; --ink-bg:#000000; color-scheme:dark; }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:var(--s900)}
@@ -109,12 +112,13 @@ section{padding-block:var(--s900)}
 .btn{display:inline-flex;align-items:center;gap:var(--s75);border:0;cursor:pointer;font-family:inherit;text-decoration:none;
   padding:var(--s75) var(--s100);border-radius:8px;background:var(--fg);color:var(--bg);transition:transform .5s var(--ease),opacity .3s var(--ease)}
 .btn:hover{transform:translateY(-1px);opacity:.9}
+.hero .btn{background:var(--accent);color:var(--accent-fg)}
 .btn:active{transform:scale(.98)}
 .email{user-select:all;color:var(--fg)}
 .proof{display:flex;flex-wrap:wrap;gap:var(--s300);margin-top:var(--s400);padding-top:var(--s300);border-top:1px solid var(--line);max-width:680px}
 .proof div{display:grid;gap:var(--s25)}
-.proof b{font-weight:600;font-size:1.5rem;line-height:2rem;font-family:var(--mono);letter-spacing:-0.02em}
-.figure{position:relative;aspect-ratio:1/1;max-width:100%;border:1px solid var(--line);border-radius:24px;background:var(--surface);overflow:hidden}
+.proof b{color:var(--t,var(--fg));font-weight:600;font-size:1.5rem;line-height:2rem;font-family:var(--mono);letter-spacing:-0.02em}
+.figure{position:relative;aspect-ratio:1/1;max-width:100%;border:1px solid var(--line);border-radius:32px;background:var(--surface);overflow:hidden}
 .figure canvas{width:100%;height:100%;display:block}
 .figure figcaption{position:absolute;left:var(--s200);bottom:var(--s200);right:var(--s200);display:flex;justify-content:space-between;gap:var(--s75);color:var(--muted)}
 .figure{margin:0}
@@ -125,7 +129,7 @@ section{padding-block:var(--s900)}
 .focus .tag{color:var(--muted)}
 
 /* Featured research */
-.feature{border:1px solid var(--line);border-radius:24px;background:var(--surface);padding:var(--s600)}
+.feature{border:1px solid var(--line);border-radius:32px;background:var(--surface);padding:var(--s600)}
 .feature-top{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s600)}
 .chips{display:flex;flex-wrap:wrap;gap:var(--s75);margin-bottom:var(--s300)}
 .chip{padding:var(--s50) var(--s100);border-radius:9999px;background:var(--accent-soft);color:var(--accent)}
@@ -133,7 +137,7 @@ section{padding-block:var(--s900)}
 .feature h3{margin-bottom:var(--s200)}
 .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s75);align-content:start}
 .stat{background:var(--sunk);border-radius:16px;padding:var(--s300);display:grid;gap:var(--s50)}
-.stat b{font-family:var(--mono);font-weight:500;font-size:1.875rem;line-height:2.25rem;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
+.stat b{color:var(--t,var(--fg));font-family:var(--mono);font-weight:500;font-size:1.875rem;line-height:2.25rem;letter-spacing:-0.03em;font-variant-numeric:tabular-nums}
 .pipeline{list-style:none;margin:var(--s600) 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s75)}
 .pipeline li{border:1px solid var(--line);border-radius:12px;padding:var(--s200);display:grid;align-content:start;gap:var(--s75);min-width:0}
 .pipeline .n{color:var(--accent)}
@@ -148,10 +152,10 @@ section{padding-block:var(--s900)}
 
 /* Publications */
 .pubs{list-style:none;margin:0;padding:0;display:grid}
-.pubs li{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:var(--s300);padding-block:var(--s300);border-top:1px solid var(--line);align-items:baseline}
+.pubs li{transition:background-color .3s var(--ease);border-radius:0;display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:var(--s300);padding-block:var(--s300);border-top:1px solid var(--line);align-items:baseline}
 .pubs li:last-child{border-bottom:1px solid var(--line)}
 .badge{padding:var(--s25) var(--s75);border-radius:6px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
-.badge.press{border-color:var(--accent);color:var(--accent)}
+.badge.press{border-color:var(--c-sys);color:var(--c-sys);background:color-mix(in srgb,var(--c-sys) 10%,transparent)}
 
 /* Projects */
 .projects{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s200)}
@@ -183,14 +187,14 @@ section{padding-block:var(--s900)}
 .faq details p{padding-bottom:var(--s300);max-width:680px;color:var(--muted)}
 
 /* Contact */
-.contact{text-align:left;border-radius:24px;background:var(--fg);color:var(--bg);padding:var(--s800) var(--s600);display:grid;gap:var(--s300)}
+.contact{text-align:left;border-radius:32px;background:var(--ink-bg);color:var(--fg);padding:var(--s800) var(--s600);display:grid;gap:var(--s300)}
 .contact h2{max-width:680px}
-.contact .muted{color:color-mix(in srgb,var(--bg) 70%,var(--fg))}
-.contact .btn{background:var(--bg);color:var(--fg)}
-.contact .email{color:var(--bg)}
+.contact .muted{color:var(--muted)}
+.contact .btn{background:var(--accent);color:var(--accent-fg)}
+.contact .email{color:var(--fg)}
 .links{display:flex;flex-wrap:wrap;gap:var(--s75)}
-.links a{display:inline-flex;align-items:center;gap:var(--s50);text-decoration:none;padding:var(--s50) var(--s100);border-radius:9999px;border:1px solid color-mix(in srgb,var(--bg) 30%,var(--fg));transition:background-color .3s var(--ease)}
-.links a:hover{background:color-mix(in srgb,var(--bg) 12%,var(--fg))}
+.links a{display:inline-flex;align-items:center;gap:var(--s50);text-decoration:none;padding:var(--s50) var(--s100);border-radius:9999px;border:1px solid var(--line);transition:background-color .3s var(--ease)}
+.links a:hover{background:var(--sunk);border-color:var(--accent)}
 footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s200);color:var(--muted)}
 
 /* Focus illustrations */
@@ -234,11 +238,61 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
 .track{position:relative;height:28px;border-radius:6px;background:var(--sunk)}
 .seg{position:absolute;top:0;bottom:0;border-radius:6px;background:var(--accent);display:flex;align-items:center;padding:0 var(--s75);color:var(--accent-fg);white-space:nowrap;overflow:hidden}
 .seg.alt{background:var(--fg);color:var(--bg)}
-.seg.live{border-radius:6px 0 0 6px}
+.seg.live{border-radius:6px 0 0 6px;background:var(--c-neuro);color:#fff}
+.seg.nlp{background:var(--c-nlp);color:#fff}
+.seg.sys{background:var(--c-sys);color:#fff}
 .years{display:grid;grid-template-columns:120px minmax(0,1fr);gap:var(--s200)}
 .ticks{position:relative;height:16px}
 .ticks span{position:absolute;transform:translateX(-50%);color:var(--muted)}
 .pubdot{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:9999px;background:var(--accent);border:2px solid var(--surface)}
+
+
+/* Ink scope: deep color field that re-themes everything inside it */
+.ink{--bg:var(--ink-bg); --surface:color-mix(in srgb,#FFFFFF 5%,var(--ink-bg)); --sunk:color-mix(in srgb,#FFFFFF 8%,var(--ink-bg));
+  --fg:#F3F7F7; --muted:#9DB4B6; --line:color-mix(in srgb,#FFFFFF 14%,var(--ink-bg));
+  --accent:#14B3BB; --accent-fg:#06191B; --accent-soft:color-mix(in srgb,#14B3BB 18%,var(--ink-bg));
+  --c-neuro:#14B3BB; --c-nlp:#E39424; --c-sys:#7F89F5; --c-health:#F05A8B;
+  background:var(--ink-bg); color:var(--fg); border-color:transparent!important; color-scheme:dark}
+.ink .muted{color:var(--muted)}
+/* Thread colors */
+[data-thread="nlp"]{--t:var(--c-nlp)} [data-thread="neuro"]{--t:var(--c-neuro)} [data-thread="health"]{--t:var(--c-health)} [data-thread="sys"]{--t:var(--c-sys)}
+.focus article{border-top:2px solid var(--t)}
+.focus .tag{display:inline-flex;align-items:center;gap:var(--s75)}
+.tdot{width:8px;height:8px;border-radius:9999px;background:var(--t);flex:none}
+.art .tc{fill:var(--t)} .art .ts{stroke:var(--t)}
+.filters{display:flex;flex-wrap:wrap;gap:var(--s75);margin-bottom:var(--s300)}
+.filter{display:inline-flex;align-items:center;gap:var(--s75);font-family:inherit;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:var(--s50) var(--s100);border-radius:9999px;transition:color .3s var(--ease),border-color .3s var(--ease),background-color .3s var(--ease),transform .5s var(--ease)}
+.filter:hover{color:var(--fg);border-color:var(--muted)}
+.filter:active{transform:scale(.98)}
+.filter[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filter .count{font-family:var(--mono);opacity:.7}
+.project{position:relative}
+.project .k{display:inline-flex;align-items:center;gap:var(--s75);color:var(--muted)}
+.project:hover{border-color:var(--t)}
+.project.out{opacity:0;transform:scale(.97)}
+.project[hidden]{display:none!important}
+.project.featured{background:color-mix(in srgb,var(--t) 9%,var(--surface))}
+.tagline .w.key.on{color:var(--c-neuro)}
+.hl{color:var(--c-neuro)}
+
+/* Turku section */
+.turku{background:var(--turku);border:1px solid var(--line);border-radius:32px;padding:var(--s600);display:grid;gap:var(--s600)}
+.turku-top{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:var(--s600);align-items:start}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s75)}
+.fact{border-radius:16px;padding:var(--s300) var(--s200);display:grid;gap:var(--s50);background:var(--surface);border:1px solid var(--line)}
+.fact b{font-family:var(--mono);font-weight:500;font-size:1.875rem;line-height:2.25rem;letter-spacing:-0.03em;color:var(--t)}
+.cards2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s200)}
+.ucard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--s300);display:grid;gap:var(--s100);align-content:start}
+.ucard .k{display:inline-flex;align-items:center;gap:var(--s75);color:var(--muted)}
+.coursework{display:flex;flex-wrap:wrap;gap:var(--s75)}
+.coursework span{padding:var(--s50) var(--s100);border-radius:9999px;background:color-mix(in srgb,var(--c-sys) 12%,var(--surface));color:var(--fg)}
+.river{width:100%;height:auto;display:block;border-radius:16px;border:1px solid var(--line);background:var(--surface)}
+.river text{font-family:var(--mono);font-size:10px;fill:var(--muted)}
+
+/* Hero ROI hover label */
+.roi-label{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);padding:var(--s50) var(--s75);border-radius:6px;opacity:0;transform:translate(-50%,-130%);transition:opacity .3s var(--ease);white-space:nowrap}
+.roi-label.show{opacity:1}
+.figure .hint{position:absolute;top:var(--s200);left:var(--s200);color:var(--muted)}
 
 .toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + var(--s300));transform:translate(-50%,16px);opacity:0;pointer-events:none;
   background:var(--fg);color:var(--bg);padding:var(--s75) var(--s200);border-radius:8px;transition:opacity .3s var(--ease),transform .5s var(--ease);z-index:60}
@@ -253,7 +307,8 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
   .figure{max-width:420px}
   .feature-top,.two{grid-template-columns:minmax(0,1fr)}
   .pipeline{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .projects,.findings,.focus,.results{grid-template-columns:minmax(0,1fr)}
+  .projects,.findings,.focus,.results,.turku-top,.cards2{grid-template-columns:minmax(0,1fr)}
+  .turku{padding:var(--s300)}
   .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
@@ -287,6 +342,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     <li><a href="#research">Research</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#turku">Turku</a></li>
     <li><a href="#experience">Experience</a></li>
   </ul>
   <a class="nav-cta button-sm" href="#contact">Get in touch</a>
@@ -297,6 +353,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     <li><a href="#research">Research</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#turku">Turku</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Get in touch</a></li>
   </ul>
@@ -307,7 +364,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
   <section class="hero" id="top">
     <div>
       <span class="status caption-4"><span class="dot" aria-hidden="true"></span>Open to thesis supervision in ML, AI and NLP</span>
-      <h1 class="heading-1">Machine learning for language<br>and the developing brain</h1>
+      <h1 class="heading-1">Machine learning<br>for language and<br>the developing brain</h1>
       <p class="sub body-3">I'm Nanziba, an MSc student in Data Analytics at the University of Turku. I build Bengali NLP datasets and models, and I'm currently studying what preschool brain MRI can and cannot tell us about early language development.</p>
       <div class="cta-row">
         <button class="btn button-md copy" data-email="nkbiva@utu.fi" type="button" id="hero-copy">
@@ -317,12 +374,12 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
         <span class="email body-5 mono">nkbiva@utu.fi</span>
       </div>
       <div class="proof">
-        <div><b>3</b><span class="caption-5 muted">publications, one in press</span></div>
-        <div><b>10,000+</b><span class="caption-5 muted">Bengali sentence pairs curated</span></div>
-        <div><b>2,023</b><span class="caption-5 muted">brain MRI scans processed</span></div>
+        <div data-thread="sys"><b>3</b><span class="caption-5 muted">publications, one in press</span></div>
+        <div data-thread="nlp"><b data-count="10000" data-suffix="+">10,000+</b><span class="caption-5 muted">Bengali sentence pairs curated</span></div>
+        <div data-thread="neuro"><b data-count="2023">2,023</b><span class="caption-5 muted">brain MRI scans processed</span></div>
       </div>
     </div>
-    <figure class="figure" aria-label="Illustration of an axial brain MRI slice with segmented regions highlighted">
+    <figure class="figure ink" aria-label="Illustration of an axial brain MRI slice with segmented regions highlighted">
       <canvas id="slice"></canvas>
       <figcaption class="caption-5 mono"><span>T1w · axial</span><span>illustrative</span></figcaption>
     </figure>
@@ -335,18 +392,18 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       <h2 class="heading-3" id="focus-h">Three threads, one habit:<br>check the data before trusting the model</h2>
     </div>
     <div class="focus">
-      <article>
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 320 128">
+      <article data-thread="nlp">
+        <div class="art ink" aria-hidden="true"><svg viewBox="0 0 320 128">
           <text x="24" y="28" font-size="10" style="fill:var(--muted)">SOURCE / PARAPHRASE</text>
           <text x="24" y="66" class="bn" font-size="26" style="fill:var(--fg)">সে দ্রুত দৌড়ায়</text>
-          <text x="24" y="104" class="bn" font-size="26" style="fill:var(--accent)">সে খুব তাড়াতাড়ি দৌড়ায়</text>
+          <text x="24" y="104" class="bn tc" font-size="26">সে খুব তাড়াতাড়ি দৌড়ায়</text>
         </svg></div>
-        <span class="tag caption-4 mono">NLP</span>
+        <span class="tag caption-4 mono"><span class="tdot"></span>NLP</span>
         <h3 class="title-2">Bengali language technology</h3>
         <p class="body-6 muted">Paraphrase generation and text classification for a language with far fewer resources than English. I built the 10,000+ pair paraphrase corpus behind our 2024 paper.</p>
       </article>
-      <article>
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 320 128">
+      <article data-thread="neuro">
+        <div class="art ink" aria-hidden="true"><svg viewBox="0 0 320 128">
           <g fill="none" style="stroke:var(--fg)" stroke-width="1">
             <ellipse cx="160" cy="64" rx="44" ry="54" opacity=".55"/>
             <ellipse cx="160" cy="64" rx="38" ry="47" opacity=".2"/>
@@ -355,29 +412,29 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
           </g>
           <ellipse cx="152" cy="62" rx="4" ry="12" style="fill:var(--muted)" opacity=".5"/>
           <ellipse cx="168" cy="62" rx="4" ry="12" style="fill:var(--muted)" opacity=".5"/>
-          <ellipse cx="148" cy="76" rx="7" ry="5" style="fill:var(--accent)"/>
-          <ellipse cx="172" cy="76" rx="7" ry="5" style="fill:var(--accent)"/>
+          <ellipse cx="148" cy="76" rx="7" ry="5" class="tc"/>
+          <ellipse cx="172" cy="76" rx="7" ry="5" class="tc"/>
           <g font-size="10" style="fill:var(--muted)">
             <line x1="179" y1="76" x2="228" y2="92" style="stroke:var(--muted)" stroke-width="1"/><text x="232" y="95">Thalamus</text>
             <line x1="152" y1="50" x2="100" y2="34" style="stroke:var(--muted)" stroke-width="1"/><text x="40" y="37">Ventricle</text>
           </g>
         </svg></div>
-        <span class="tag caption-4 mono">Neuroimaging</span>
+        <span class="tag caption-4 mono"><span class="tdot"></span>Neuroimaging</span>
         <h3 class="title-2">Radiomics from pediatric MRI</h3>
         <p class="body-6 muted">My MSc thesis uses the Calgary Preschool MRI Dataset to test whether brain structure predicts early language and processing speed scores beyond age.</p>
       </article>
-      <article>
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 320 128">
+      <article data-thread="health">
+        <div class="art ink" aria-hidden="true"><svg viewBox="0 0 320 128">
           <line x1="40" y1="104" x2="290" y2="104" style="stroke:var(--line)" stroke-width="1"/>
           <line x1="40" y1="24" x2="40" y2="104" style="stroke:var(--line)" stroke-width="1"/>
-          <path d="M40 100 C 120 99, 140 96, 165 64 S 220 28, 290 27" fill="none" style="stroke:var(--accent)" stroke-width="2"/>
+          <path d="M40 100 C 120 99, 140 96, 165 64 S 220 28, 290 27" fill="none" class="ts" stroke-width="2"/>
           <line x1="190" y1="20" x2="190" y2="104" style="stroke:var(--fg)" stroke-width="1" stroke-dasharray="3 3" opacity=".6"/>
           <g style="fill:var(--fg)" opacity=".45"><circle cx="70" cy="96" r="3"/><circle cx="96" cy="99" r="3"/><circle cx="122" cy="92" r="3"/><circle cx="150" cy="80" r="3"/></g>
-          <g style="fill:var(--accent)"><circle cx="205" cy="40" r="3"/><circle cx="232" cy="33" r="3"/><circle cx="260" cy="30" r="3"/></g>
+          <g class="tc"><circle cx="205" cy="40" r="3"/><circle cx="232" cy="33" r="3"/><circle cx="260" cy="30" r="3"/></g>
           <text x="196" y="18" font-size="10" style="fill:var(--muted)">threshold</text>
           <text x="44" y="120" font-size="10" style="fill:var(--muted)">predicted risk</text>
         </svg></div>
-        <span class="tag caption-4 mono">Health ML</span>
+        <span class="tag caption-4 mono"><span class="tdot"></span>Health ML</span>
         <h3 class="title-2">Screening and risk prediction</h3>
         <p class="body-6 muted">Classification models for eclampsia risk in rural Bangladeshi women and early autism screening in children, plus an allergy aware food recommender.</p>
       </article>
@@ -390,7 +447,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       <span class="eyebrow caption-3">Current work</span>
       <h2 class="heading-3" id="calgary-h">MSc thesis on the Calgary<br>Preschool MRI Dataset</h2>
     </div>
-    <article class="feature">
+    <article class="feature ink">
       <div class="feature-top">
         <div>
           <div class="chips caption-4">
@@ -402,19 +459,19 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
           <p class="body-3 muted">Children in the Calgary cohort were scanned repeatedly between roughly ages two and eight and assessed with NEPSY II and Woodcock Johnson IV language tasks. I built an end to end pipeline on CSC's HPC cluster to ask a narrow question: once you know a child's age and sex, does their brain scan add anything to predicting phonological processing and speeded naming?</p>
         </div>
         <div class="stats">
-          <div class="stat"><b>143</b><span class="caption-5 muted">children in the cohort</span></div>
-          <div class="stat"><b>2,023</b><span class="caption-5 muted">T1 scans segmented</span></div>
-          <div class="stat"><b>14,469</b><span class="caption-5 muted">radiomic features per scan</span></div>
-          <div class="stat"><b>460</b><span class="caption-5 muted">diffusion scans analysed</span></div>
+          <div class="stat" data-thread="neuro"><b data-count="143">143</b><span class="caption-5 muted">children in the cohort</span></div>
+          <div class="stat" data-thread="nlp"><b data-count="2023">2,023</b><span class="caption-5 muted">T1 scans segmented</span></div>
+          <div class="stat" data-thread="sys"><b data-count="14469">14,469</b><span class="caption-5 muted">radiomic features per scan</span></div>
+          <div class="stat" data-thread="health"><b data-count="460">460</b><span class="caption-5 muted">diffusion scans analysed</span></div>
         </div>
       </div>
 
       <ol class="pipeline">
-        <li><span class="n caption-3 mono">01 Segment</span><span class="body-6">SynthSeg on every T1 image, with visual QC of the label maps</span></li>
-        <li><span class="n caption-3 mono">02 Extract</span><span class="body-6">PyRadiomics shape, intensity and texture features per brain region</span></li>
-        <li><span class="n caption-3 mono">03 Harmonise</span><span class="body-6">ComBat across five scanner software versions, protecting age</span></li>
-        <li><span class="n caption-3 mono">04 Model</span><span class="body-6">Elastic Net, Random Forest and TabPFN in stratified cross validation</span></li>
-        <li><span class="n caption-3 mono">05 Extend</span><span class="body-6">DTI with DIPY: FA and MD per region from the diffusion scans</span></li>
+        <li><span class="n caption-3 mono" style="color:var(--c-neuro)">01 Segment</span><span class="body-6">SynthSeg on every T1 image, with visual QC of the label maps</span></li>
+        <li><span class="n caption-3 mono" style="color:var(--c-nlp)">02 Extract</span><span class="body-6">PyRadiomics shape, intensity and texture features per brain region</span></li>
+        <li><span class="n caption-3 mono" style="color:var(--c-sys)">03 Harmonise</span><span class="body-6">ComBat across five scanner software versions, protecting age</span></li>
+        <li><span class="n caption-3 mono" style="color:var(--c-health)">04 Model</span><span class="body-6">Elastic Net, Random Forest and TabPFN in stratified cross validation</span></li>
+        <li><span class="n caption-3 mono" style="color:var(--c-neuro)">05 Extend</span><span class="body-6">DTI with DIPY: FA and MD per region from the diffusion scans</span></li>
       </ol>
 
       <div class="findings">
@@ -467,7 +524,7 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
 
   <!-- TAGLINE REVEAL -->
   <section class="tagline" aria-label="Approach">
-    <p class="heading-3" id="tagline">I build machine learning pipelines that test their own assumptions,<br>so a result means what it says, even when the answer is no.</p>
+    <p class="heading-3" id="tagline">I build machine learning pipelines that <k>test their own assumptions,</k><br>so a result means what it says, even when the answer is no.</p>
   </section>
 
   <!-- PUBLICATIONS -->
@@ -477,9 +534,9 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       <h2 class="heading-3" id="pub-h">Peer reviewed work</h2>
     </div>
     <ol class="pubs">
-      <li><span class="caption-4 mono muted">2026</span><span class="title-3">A Hybrid Embedding Framework Combining Contextual and Subword Representations for Bengali Text Classification</span><span class="badge press caption-4">In press</span></li>
-      <li><span class="caption-4 mono muted">2024</span><span class="title-3">A Large-Scale Bengali Paraphrase Generation Dataset: A Comprehensive Study of Language Models and Performance Analysis</span><span class="badge caption-4">Published</span></li>
-      <li><span class="caption-4 mono muted">2024</span><span class="title-3">Optimizing Round Robin Scheduling with DBSCAN Clustering and Machine Learning</span><span class="badge caption-4">Published</span></li>
+      <li><span class="caption-4 mono" style="color:var(--c-sys)">2026</span><span class="title-3">A Hybrid Embedding Framework Combining Contextual and Subword Representations for Bengali Text Classification</span><span class="badge press caption-4">In press</span></li>
+      <li><span class="caption-4 mono" style="color:var(--c-nlp)">2024</span><span class="title-3">A Large-Scale Bengali Paraphrase Generation Dataset: A Comprehensive Study of Language Models and Performance Analysis</span><span class="badge caption-4">Published</span></li>
+      <li><span class="caption-4 mono" style="color:var(--c-nlp)">2024</span><span class="title-3">Optimizing Round Robin Scheduling with DBSCAN Clustering and Machine Learning</span><span class="badge caption-4">Published</span></li>
     </ol>
   </section>
 
@@ -489,13 +546,62 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       <span class="eyebrow caption-3">Projects</span>
       <h2 class="heading-3" id="proj-h">Selected projects</h2>
     </div>
-    <div class="projects">
-      <article class="project"><span class="k caption-4 mono">NLP</span><h3 class="title-3">Bengali paraphrase generator</h3><p class="body-6 muted">Trained a large language model on a self curated Bengali corpus. The dataset is the basis of the 2024 publication.</p></article>
-      <article class="project"><span class="k caption-4 mono">ML · Health</span><h3 class="title-3">Eclampsia prediction</h3><p class="body-6 muted">Classification models that predict eclampsia risk in rural Bangladeshi women, aimed at real world screening.</p></article>
-      <article class="project"><span class="k caption-4 mono">ANN · Health</span><h3 class="title-3">Autism prediction</h3><p class="body-6 muted">Neural network and classical ML approaches to early autism screening in children, benchmarked on accuracy.</p></article>
-      <article class="project"><span class="k caption-4 mono">ML · BSc thesis</span><h3 class="title-3">Personalized food recommendation</h3><p class="body-6 muted">An allergy aware recommendation engine that filters and ranks meals for each user's restrictions.</p></article>
-      <article class="project"><span class="k caption-4 mono">C++</span><h3 class="title-3">Digital image processing</h3><p class="body-6 muted">Median filtering on RAW images with configurable parameters for noise reduction and quality benchmarking.</p></article>
-      <article class="project"><span class="k caption-4 mono">Java · MySQL</span><h3 class="title-3">Department management system</h3><p class="body-6 muted">Desktop app with a MySQL backend for class schedules and course management.</p></article>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="filter button-sm" type="button" data-f="all" aria-pressed="true">All <span class="count">7</span></button>
+      <button class="filter button-sm" type="button" data-f="nlp" data-thread="nlp" aria-pressed="false"><span class="tdot"></span>NLP <span class="count">1</span></button>
+      <button class="filter button-sm" type="button" data-f="neuro" data-thread="neuro" aria-pressed="false"><span class="tdot"></span>Neuroimaging <span class="count">1</span></button>
+      <button class="filter button-sm" type="button" data-f="health" data-thread="health" aria-pressed="false"><span class="tdot"></span>Health <span class="count">3</span></button>
+      <button class="filter button-sm" type="button" data-f="sys" data-thread="sys" aria-pressed="false"><span class="tdot"></span>Systems <span class="count">2</span></button>
+    </div>
+    <div class="projects" id="projects-grid">
+      <article class="project featured" data-thread="neuro"><span class="k caption-4 mono"><span class="tdot"></span>Neuroimaging · MSc thesis</span><h3 class="title-3">Calgary preschool MRI radiomics</h3><p class="body-6 muted">End to end pipeline from 2,023 T1 scans to harmonised features and nested cross validation, extended with diffusion imaging.</p></article>
+      <article class="project" data-thread="nlp"><span class="k caption-4 mono"><span class="tdot"></span>NLP</span><h3 class="title-3">Bengali paraphrase generator</h3><p class="body-6 muted">Trained a large language model on a self curated Bengali corpus. The dataset is the basis of the 2024 publication.</p></article>
+      <article class="project" data-thread="health"><span class="k caption-4 mono"><span class="tdot"></span>ML · Health</span><h3 class="title-3">Eclampsia prediction</h3><p class="body-6 muted">Classification models that predict eclampsia risk in rural Bangladeshi women, aimed at real world screening.</p></article>
+      <article class="project" data-thread="health"><span class="k caption-4 mono"><span class="tdot"></span>ANN · Health</span><h3 class="title-3">Autism prediction</h3><p class="body-6 muted">Neural network and classical ML approaches to early autism screening in children, benchmarked on accuracy.</p></article>
+      <article class="project" data-thread="health"><span class="k caption-4 mono"><span class="tdot"></span>ML · BSc thesis</span><h3 class="title-3">Personalized food recommendation</h3><p class="body-6 muted">An allergy aware recommendation engine that filters and ranks meals for each user's restrictions.</p></article>
+      <article class="project" data-thread="sys"><span class="k caption-4 mono"><span class="tdot"></span>C++</span><h3 class="title-3">Digital image processing</h3><p class="body-6 muted">Median filtering on RAW images with configurable parameters for noise reduction and quality benchmarking.</p></article>
+      <article class="project" data-thread="sys"><span class="k caption-4 mono"><span class="tdot"></span>Java · MySQL</span><h3 class="title-3">Department management system</h3><p class="body-6 muted">Desktop app with a MySQL backend for class schedules and course management.</p></article>
+    </div>
+  </section>
+
+  <!-- TURKU -->
+  <section id="turku" aria-labelledby="turku-h">
+    <div class="section-head">
+      <span class="eyebrow caption-3">Where I study</span>
+      <h2 class="heading-3" id="turku-h">University of Turku,<br>on the Aura river</h2>
+    </div>
+    <div class="turku">
+      <div class="turku-top">
+        <div style="display:grid;gap:var(--s300)">
+          <p class="body-3 muted">I study Data Analytics in the Faculty of Technology at the University of Turku in southwest Finland. The city also has an active brain research community across the university and Turku University Hospital.</p>
+          <div class="facts">
+            <div class="fact" data-thread="sys"><b data-count="1920" data-plain="1">1920</b><span class="caption-5 muted">year founded</span></div>
+            <div class="fact" data-thread="nlp"><b data-count="23000" data-suffix="+">23,000+</b><span class="caption-5 muted">students</span></div>
+            <div class="fact" data-thread="health"><b data-count="8">8</b><span class="caption-5 muted">faculties</span></div>
+          </div>
+          <div class="coursework caption-4" aria-label="MSc coursework">
+            <span>Deep Learning in HLT</span><span>Statistical Data Analysis</span><span>ML Evaluation</span><span>Advanced Algorithms</span>
+          </div>
+        </div>
+        <svg class="river" viewBox="0 0 360 240" role="img" aria-label="Stylised line drawing of the Aura river running through Turku to the Baltic Sea">
+          <rect x="0" y="0" width="360" height="240" style="fill:var(--surface)"/>
+          <path d="M0 200 C 40 196, 70 210, 110 190 S 170 140, 205 128 S 270 96, 300 60 S 340 20, 360 10" style="fill:none;stroke:var(--c-neuro)" stroke-width="10" stroke-linecap="round" opacity=".22"/>
+          <path d="M0 200 C 40 196, 70 210, 110 190 S 170 140, 205 128 S 270 96, 300 60 S 340 20, 360 10" style="fill:none;stroke:var(--c-neuro)" stroke-width="2"/>
+          <g style="fill:var(--fg)" opacity=".12">
+            <rect x="140" y="80" width="26" height="18" rx="3"/><rect x="172" y="72" width="18" height="26" rx="3"/><rect x="224" y="140" width="30" height="20" rx="3"/><rect x="260" y="128" width="20" height="16" rx="3"/><rect x="96" y="140" width="22" height="20" rx="3"/>
+          </g>
+          <circle cx="236" cy="98" r="7" style="fill:var(--c-sys)"/>
+          <circle cx="236" cy="98" r="14" style="fill:none;stroke:var(--c-sys)" stroke-width="1.5" opacity=".5"/>
+          <text x="252" y="94">University</text><text x="252" y="106">campus</text>
+          <text x="24" y="226">to the Baltic Sea</text>
+          <text x="300" y="34">Aura river</text>
+        </svg>
+      </div>
+      <div class="cards2">
+        <article class="ucard" data-thread="neuro"><span class="k caption-4 mono"><span class="tdot"></span>Brain research</span><h3 class="title-3">Turku Brain &amp; Mind Center</h3><p class="body-6 muted">Founded in 2011, it brings about 20 brain research groups in the Turku region together, with brain development among its research areas.</p></article>
+        <article class="ucard" data-thread="sys"><span class="k caption-4 mono"><span class="tdot"></span>Imaging</span><h3 class="title-3">Turku PET Centre</h3><p class="body-6 muted">Finland's national centre for PET imaging research, and one of the university's four independent units.</p></article>
+        <article class="ucard" data-thread="nlp"><span class="k caption-4 mono"><span class="tdot"></span>Computing</span><h3 class="title-3">CSC supercomputing</h3><p class="body-6 muted">My Calgary pipeline runs on CSC's national HPC cluster, from batch segmentation to multi hour TabPFN model runs.</p></article>
+      </div>
     </div>
   </section>
 
@@ -562,9 +668,9 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
 
   <!-- FINAL CTA -->
   <section id="contact" aria-labelledby="contact-h">
-    <div class="contact">
+    <div class="contact ink">
       <span class="caption-3 muted">Get in touch</span>
-      <h2 class="heading-3" id="contact-h">Supervising a thesis in ML, AI or NLP?<br>I'd like to hear about it.</h2>
+      <h2 class="heading-3" id="contact-h">Supervising a thesis in ML, AI or NLP?<br>Let's talk.</h2>
       <div class="cta-row" style="margin-top:0">
         <button class="btn button-md copy" data-email="nkbiva@utu.fi" type="button" id="contact-copy">
           <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216 32H88a8 8 0 0 0-8 8v40H40a8 8 0 0 0-8 8v128a8 8 0 0 0 8 8h128a8 8 0 0 0 8-8v-40h40a8 8 0 0 0 8-8V40a8 8 0 0 0-8-8Zm-56 176H48V96h112Zm48-48h-32V88a8 8 0 0 0-8-8H96V48h112Z"/></svg>
@@ -652,7 +758,14 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
   /* Tagline word reveal (skill B11) */
   var tag = document.getElementById('tagline');
   var html = tag.innerHTML.split('<br>').map(function(line){
-    return line.trim().split(/\s+/).map(function(w){ return '<span class="w">' + w + '</span>'; }).join(' ');
+    var key = false;
+    return line.trim().split(/\s+/).map(function(w){
+      if(w.indexOf('<k>') === 0){ key = true; w = w.slice(3); }
+      var end = w.indexOf('</k>') > -1; w = w.replace('</k>','');
+      var out = '<span class="w' + (key ? ' key' : '') + '">' + w + '</span>';
+      if(end) key = false;
+      return out;
+    }).join(' ');
   }).join('<br>');
   tag.innerHTML = html;
   var words = tag.querySelectorAll('.w');
@@ -671,6 +784,34 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     }
     window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(update); } }, {passive:true});
     update();
+  }
+
+  /* Project filters */
+  var filters = document.querySelectorAll('.filter'), cards = document.querySelectorAll('#projects-grid .project');
+  filters.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.dataset.f;
+      filters.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      cards.forEach(function(c){
+        var show = f === 'all' || c.dataset.thread === f;
+        if(show){ c.hidden = false; requestAnimationFrame(function(){ c.classList.remove('out'); }); }
+        else { c.classList.add('out'); setTimeout(function(){ if(c.classList.contains('out')) c.hidden = true; }, reduce ? 0 : 300); }
+      });
+    });
+  });
+
+  /* Count up numbers when they scroll into view (final values are in the HTML at rest) */
+  if('IntersectionObserver' in window && !reduce){
+    var cio = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if(!en.isIntersecting) return; cio.unobserve(en.target);
+        var el = en.target, to = +el.dataset.count, suf = el.dataset.suffix || '', plain = el.dataset.plain, t0 = null, from = plain ? Math.round(to*0.97) : 0;
+        function step(ts){ if(!t0) t0 = ts; var k = Math.min(1, (ts - t0)/1100), e = 1 - Math.pow(1 - k, 3), v = Math.round(from + (to - from)*e);
+          el.textContent = (plain ? String(v) : v.toLocaleString('en-US')) + (k === 1 ? suf : ''); if(k < 1) requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      });
+    }, {threshold:0.6});
+    document.querySelectorAll('[data-count]').forEach(function(el){ if(el.getBoundingClientRect().top > window.innerHeight) cio.observe(el); });
   }
 
   /* ---------- Charts ---------- */
@@ -773,8 +914,8 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     function pos(y, m){ return ((y + (m - 1)/12) - start)/span*100; }
     var lanes = [
       {k:'Education', segs:[{a:[2018,1], b:[2024,12], t:'BSc Computer Science and Engineering', c:'alt'}, {a:[2025,9], b:[2026,11], t:'MSc Data Analytics', c:'live'}]},
-      {k:'Research', segs:[{a:[2024,1], b:[2025,9], t:'Research Assistant'}]},
-      {k:'Industry', segs:[{a:[2024,8], b:[2025,7], t:'IT Executive', c:'alt'}]},
+      {k:'Research', segs:[{a:[2024,1], b:[2025,9], t:'Research Assistant', c:'nlp'}]},
+      {k:'Industry', segs:[{a:[2024,8], b:[2025,7], t:'IT Executive', c:'sys'}]},
       {k:'Publications', dots:[[2024,5],[2024,8],[2026,6]]}
     ];
     var root = document.getElementById('strip'), h = '';
@@ -795,12 +936,12 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
 
   /* Hero illustration: stylised axial slice with highlighted regions */
   var cv = document.getElementById('slice'), ctx = cv.getContext('2d');
-  function css(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function css(v){ return getComputedStyle(cv.parentNode).getPropertyValue(v).trim(); }
   function draw(){
     var box = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
     cv.width = box.width * dpr; cv.height = box.height * dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
     var w = box.width, h = box.height, cx = w/2, cy = h*0.47, R = Math.min(w,h)*0.36;
-    var fg = css('--fg'), accent = css('--accent'), muted = css('--muted');
+    var fg = css('--fg'), accent = css('--accent'), muted = css('--muted'), cN = css('--c-neuro'), cL = css('--c-nlp'), cS = css('--c-sys'), cH = css('--c-health');
     ctx.clearRect(0,0,w,h);
     function contour(scale, amp, freqs, phase){
       ctx.beginPath();
@@ -812,6 +953,9 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
       }
       ctx.closePath();
     }
+    // cortex fill
+    ctx.globalAlpha = 0.16; ctx.fillStyle = cN; contour(1.0, 0.02, [12, 19, 29], 0.4); ctx.fill();
+    ctx.globalAlpha = 0.10; ctx.fillStyle = cS; contour(0.72, 0.03, [9, 15, 23], 1.3); ctx.fill();
     // skull and cortex rings
     ctx.lineWidth = 1;
     for(var s=0;s<14;s++){
@@ -824,14 +968,14 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     // midline
     ctx.globalAlpha = 0.25; ctx.beginPath(); ctx.moveTo(cx, cy - R*0.95); ctx.lineTo(cx, cy + R*0.95); ctx.stroke();
     // ventricles
-    ctx.globalAlpha = 0.5; ctx.fillStyle = muted;
+    ctx.globalAlpha = 0.85; ctx.fillStyle = cS;
     [[-1],[1]].forEach(function(d){
       ctx.beginPath(); ctx.ellipse(cx + d[0]*R*0.1, cy - R*0.05, R*0.06, R*0.22, d[0]*0.18, 0, Math.PI*2); ctx.fill();
     });
-    // highlighted ROIs (thalamus, caudate, amygdala) in accent
-    var rois = [[0.2,0.12,0.13,0.09],[-0.2,0.12,0.13,0.09],[0.17,-0.22,0.07,0.1],[-0.17,-0.22,0.07,0.1],[0.36,0.36,0.06,0.05],[-0.36,0.36,0.06,0.05]];
+    // highlighted ROIs in accent
+    var rois = window.__rois = [[0.2,0.12,0.13,0.09],[-0.2,0.12,0.13,0.09],[0.17,-0.22,0.07,0.1],[-0.17,-0.22,0.07,0.1],[0.36,0.36,0.06,0.05],[-0.36,0.36,0.06,0.05]];
     rois.forEach(function(r,i){
-      ctx.globalAlpha = i<2 ? 0.9 : 0.55; ctx.fillStyle = accent;
+      ctx.globalAlpha = 0.95; ctx.fillStyle = i<2 ? cN : (i<4 ? cL : cH);
       ctx.beginPath(); ctx.ellipse(cx + r[0]*R, cy + r[1]*R, r[2]*R, r[3]*R, 0, 0, Math.PI*2); ctx.fill();
     });
     // feature sample points
@@ -843,6 +987,17 @@ footer{max-width:1080px;margin:0 auto;padding-block:var(--s400) var(--s600);disp
     ctx.globalAlpha = 1;
   }
   draw();
+  var names = ['Thalamus','Thalamus','Caudate','Caudate','Amygdala','Amygdala'];
+  var fig = cv.parentNode, lab = document.createElement('span'); lab.className = 'roi-label caption-4'; fig.appendChild(lab);
+  var hint = document.createElement('span'); hint.className = 'hint caption-5 mono'; hint.textContent = 'hover a region'; fig.appendChild(hint);
+  cv.addEventListener('mousemove', function(e){
+    var b = cv.getBoundingClientRect(), mx = e.clientX - b.left, my = e.clientY - b.top;
+    var w = b.width, h = b.height, cx = w/2, cy = h*0.47, R = Math.min(w,h)*0.36, hit = -1;
+    (window.__rois || []).forEach(function(r,i){ var dx = (mx - (cx + r[0]*R))/(r[2]*R), dy = (my - (cy + r[1]*R))/(r[3]*R); if(dx*dx + dy*dy <= 1.4) hit = i; });
+    if(hit > -1){ var r = window.__rois[hit]; lab.textContent = names[hit]; lab.style.left = (cx + r[0]*R) + 'px'; lab.style.top = (cy + r[1]*R - r[3]*R) + 'px'; lab.classList.add('show'); cv.style.cursor = 'crosshair'; }
+    else { lab.classList.remove('show'); cv.style.cursor = ''; }
+  });
+  cv.addEventListener('mouseleave', function(){ lab.classList.remove('show'); });
   var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(draw, 120); });
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
   new MutationObserver(draw).observe(document.documentElement, {attributes:true, attributeFilter:['data-theme']});
